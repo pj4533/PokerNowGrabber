@@ -7,14 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0AC1461F24B8D6AE009D2A98 /* GameConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC1461E24B8D6AE009D2A98 /* GameConnection.swift */; };
 		0AF3CEF524B7717000EBEB76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF3CEF424B7717000EBEB76 /* AppDelegate.swift */; };
 		0AF3CEF724B7717000EBEB76 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF3CEF624B7717000EBEB76 /* ViewController.swift */; };
 		0AF3CEF924B7717300EBEB76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AF3CEF824B7717300EBEB76 /* Assets.xcassets */; };
 		0AF3CEFC24B7717300EBEB76 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AF3CEFA24B7717300EBEB76 /* Main.storyboard */; };
 		0AF3CF0524B774F200EBEB76 /* CustomWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF3CF0424B774F200EBEB76 /* CustomWindow.swift */; };
+		5FD87B19182CD529ADA98B50 /* Pods_PokerNowGrabber.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AE0385DB540383B42BD22B9 /* Pods_PokerNowGrabber.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0AC1461E24B8D6AE009D2A98 /* GameConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameConnection.swift; sourceTree = "<group>"; };
+		0AE0385DB540383B42BD22B9 /* Pods_PokerNowGrabber.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PokerNowGrabber.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AF3CEF124B7717000EBEB76 /* PokerNowGrabber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokerNowGrabber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AF3CEF424B7717000EBEB76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0AF3CEF624B7717000EBEB76 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -23,6 +27,8 @@
 		0AF3CEFD24B7717300EBEB76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0AF3CEFE24B7717300EBEB76 /* PokerNowGrabber.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PokerNowGrabber.entitlements; sourceTree = "<group>"; };
 		0AF3CF0424B774F200EBEB76 /* CustomWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomWindow.swift; sourceTree = "<group>"; };
+		2D3DF9A90C16B6C211540DBC /* Pods-PokerNowGrabber.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokerNowGrabber.debug.xcconfig"; path = "Target Support Files/Pods-PokerNowGrabber/Pods-PokerNowGrabber.debug.xcconfig"; sourceTree = "<group>"; };
+		7C755CD3A1672FA5354BD2E8 /* Pods-PokerNowGrabber.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokerNowGrabber.release.xcconfig"; path = "Target Support Files/Pods-PokerNowGrabber/Pods-PokerNowGrabber.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,17 +36,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FD87B19182CD529ADA98B50 /* Pods_PokerNowGrabber.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		045D259AF25A7B00D1F3E9B0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0AE0385DB540383B42BD22B9 /* Pods_PokerNowGrabber.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		0AF3CEE824B7717000EBEB76 = {
 			isa = PBXGroup;
 			children = (
 				0AF3CEF324B7717000EBEB76 /* PokerNowGrabber */,
 				0AF3CEF224B7717000EBEB76 /* Products */,
+				87120B824E7FCABAD025107B /* Pods */,
+				045D259AF25A7B00D1F3E9B0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,8 +79,19 @@
 				0AF3CEFD24B7717300EBEB76 /* Info.plist */,
 				0AF3CEFE24B7717300EBEB76 /* PokerNowGrabber.entitlements */,
 				0AF3CF0424B774F200EBEB76 /* CustomWindow.swift */,
+				0AC1461E24B8D6AE009D2A98 /* GameConnection.swift */,
 			);
 			path = PokerNowGrabber;
+			sourceTree = "<group>";
+		};
+		87120B824E7FCABAD025107B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2D3DF9A90C16B6C211540DBC /* Pods-PokerNowGrabber.debug.xcconfig */,
+				7C755CD3A1672FA5354BD2E8 /* Pods-PokerNowGrabber.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -73,9 +101,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0AF3CF0124B7717300EBEB76 /* Build configuration list for PBXNativeTarget "PokerNowGrabber" */;
 			buildPhases = (
+				7F7786A27957C3C3B16D3F24 /* [CP] Check Pods Manifest.lock */,
 				0AF3CEED24B7717000EBEB76 /* Sources */,
 				0AF3CEEE24B7717000EBEB76 /* Frameworks */,
 				0AF3CEEF24B7717000EBEB76 /* Resources */,
+				3361BCB21CFF555045C10E26 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -131,12 +161,62 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3361BCB21CFF555045C10E26 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PokerNowGrabber/Pods-PokerNowGrabber-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PokerNowGrabber/Pods-PokerNowGrabber-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7F7786A27957C3C3B16D3F24 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PokerNowGrabber-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0AF3CEED24B7717000EBEB76 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				0AF3CEF724B7717000EBEB76 /* ViewController.swift in Sources */,
+				0AC1461F24B8D6AE009D2A98 /* GameConnection.swift in Sources */,
 				0AF3CEF524B7717000EBEB76 /* AppDelegate.swift in Sources */,
 				0AF3CF0524B774F200EBEB76 /* CustomWindow.swift in Sources */,
 			);
@@ -271,6 +351,7 @@
 		};
 		0AF3CF0224B7717300EBEB76 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D3DF9A90C16B6C211540DBC /* Pods-PokerNowGrabber.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = PokerNowGrabber/PokerNowGrabber.entitlements;
@@ -291,6 +372,7 @@
 		};
 		0AF3CF0324B7717300EBEB76 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7C755CD3A1672FA5354BD2E8 /* Pods-PokerNowGrabber.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = PokerNowGrabber/PokerNowGrabber.entitlements;
