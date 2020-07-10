@@ -164,7 +164,7 @@ class GameConnection: NSObject {
                         let pipe = Pipe()
                         let task = Process()
                         task.standardOutput = pipe
-                        task.arguments = ["/usr/local/bin/pn2ps", "./hand_\(endTime).txt", heroName, "-m", "0.01", "-t", "pnhud"]
+                        task.arguments = ["/usr/local/bin/pn2ps", "./hand_\(endTime).txt", heroName, "-m", "0.01", "-t", "PokerNowGrabber"]
                         task.launchPath = "/usr/bin/env"
                         task.launch()
                         let data = pipe.fileHandleForReading.readDataToEndOfFile()

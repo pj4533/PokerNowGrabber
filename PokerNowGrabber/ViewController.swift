@@ -46,7 +46,7 @@ class ViewController: NSViewController {
                         let newFrame = CGRect(x: x, y: y, width: width, height: height)
 
                         let window = CustomWindow(contentRect: newFrame, styleMask: [.borderless], backing: .buffered, defer: false)
-                        window.title = "PokerNowGrabber - Table: pnhud"
+                        window.title = "PokerNowGrabber - Table: PokerNowGrabber"
                         self.controller = NSWindowController(window: window)
                         self.controller?.showWindow(self)
 
