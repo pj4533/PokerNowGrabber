@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0AC1461F24B8D6AE009D2A98 /* GameConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC1461E24B8D6AE009D2A98 /* GameConnection.swift */; };
+		0AC1462124B90598009D2A98 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC1462024B90598009D2A98 /* Player.swift */; };
 		0AF3CEF524B7717000EBEB76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF3CEF424B7717000EBEB76 /* AppDelegate.swift */; };
 		0AF3CEF724B7717000EBEB76 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF3CEF624B7717000EBEB76 /* ViewController.swift */; };
 		0AF3CEF924B7717300EBEB76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AF3CEF824B7717300EBEB76 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		0AC1461E24B8D6AE009D2A98 /* GameConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameConnection.swift; sourceTree = "<group>"; };
+		0AC1462024B90598009D2A98 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		0AE0385DB540383B42BD22B9 /* Pods_PokerNowGrabber.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PokerNowGrabber.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AF3CEF124B7717000EBEB76 /* PokerNowGrabber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokerNowGrabber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AF3CEF424B7717000EBEB76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 				0AF3CEFE24B7717300EBEB76 /* PokerNowGrabber.entitlements */,
 				0AF3CF0424B774F200EBEB76 /* CustomWindow.swift */,
 				0AC1461E24B8D6AE009D2A98 /* GameConnection.swift */,
+				0AC1462024B90598009D2A98 /* Player.swift */,
 			);
 			path = PokerNowGrabber;
 			sourceTree = "<group>";
@@ -90,7 +93,6 @@
 				2D3DF9A90C16B6C211540DBC /* Pods-PokerNowGrabber.debug.xcconfig */,
 				7C755CD3A1672FA5354BD2E8 /* Pods-PokerNowGrabber.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -218,6 +220,7 @@
 				0AF3CEF724B7717000EBEB76 /* ViewController.swift in Sources */,
 				0AC1461F24B8D6AE009D2A98 /* GameConnection.swift in Sources */,
 				0AF3CEF524B7717000EBEB76 /* AppDelegate.swift in Sources */,
+				0AC1462124B90598009D2A98 /* Player.swift in Sources */,
 				0AF3CF0524B774F200EBEB76 /* CustomWindow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

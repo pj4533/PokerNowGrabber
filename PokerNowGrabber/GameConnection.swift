@@ -21,6 +21,8 @@ class GameConnection: NSObject {
     
     var startTime: Int?
     
+    var players: [Player] = []
+    
     var heroName: String?
     var npt: String?
     var dpt: String?
@@ -28,6 +30,10 @@ class GameConnection: NSObject {
     
     init(gameIdOrURL: String, heroName: String?, npt: String?, dpt: String?, handHistoryDirectory: String?) {
         super.init()
+
+        struct GameState : Codable {
+            var players: [String:Player]?
+        }
 
         self.heroName = heroName
         self.npt = npt
@@ -83,11 +89,56 @@ class GameConnection: NSObject {
             }
 
             socket?.on("rup", callback: { (json, ack) in
+                do {
+                    let data = try JSONSerialization.data(withJSONObject: json, options: [])
+                    let decoder = JSONDecoder()
+                    let state = try decoder.decode([GameState].self, from: data)
+
+                    self.players = state.first?.players?.map({$0.value}) ?? []
+                    
+                    print("In Game Players (FROM RUP): ")
+                    print("----------------------------")
+                    let players = state.first?.players?.values.filter({$0.name != nil}).map({ $0 })
+                    for player in players ?? [] {
+                        print("\t\(player.name ?? "") @ \(player.id ?? "")")
+                    }
+                    print("----------------------------")
+                } catch let error {
+                    if self.debug {
+                        print(error)
+                    }
+                }
+
+                
                 self.loadedRUP = true
             })
 
             socket?.on("gC", callback: { (newStateArray, ack) in
                 if self.loadedRUP {
+                    
+                    if let json = newStateArray.first as? [String:Any] {
+                        do {
+                            let data = try JSONSerialization.data(withJSONObject: json, options: [])
+                            let decoder = JSONDecoder()
+                            let state = try decoder.decode(GameState.self, from: data)
+                            
+                            if state.players != nil {
+                                for playerId in state.players?.map({$0.key}) ?? [] {
+                                    if let player = state.players?[playerId] {
+                                        if player.status == .requestedGameIngress {
+                                            print("NEW PLAYER:  \(player.name ?? "") @ \(player.id ?? "")")
+                                        }
+                                    }
+                                }
+                            }
+                        } catch let error {
+                            if self.debug {
+                                print(error)
+                            }
+                        }
+                    }
+                        
+                        
                     if let json = newStateArray.first as? [String:Any] {
                         if (json["gT"] as? String) == "gameResult" {
                             if let now = json["now"] as? Int {

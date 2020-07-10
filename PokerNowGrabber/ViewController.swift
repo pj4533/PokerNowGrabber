@@ -12,6 +12,7 @@ class ViewController: NSViewController {
 
     var game: GameConnection?
     var controller: NSWindowController?
+    var running: Bool = false
     
     @IBOutlet weak var heroNameTextField: NSTextField!
     @IBOutlet weak var grabHandsButton: NSButton!
@@ -30,29 +31,39 @@ class ViewController: NSViewController {
     }
 
     @IBAction func startGrabbingClicked(_ sender: Any) {
-        UserDefaults.standard.set(self.gameURLTextField.stringValue, forKey: "gameURL")
-        UserDefaults.standard.set(self.heroNameTextField.stringValue, forKey: "heroName")
-        UserDefaults.standard.set(self.dptCookieTextField.stringValue, forKey: "dpt")
-        UserDefaults.standard.set(self.nptCookieTextField.stringValue, forKey: "npt")
-        UserDefaults.standard.set(self.handsOutputDirTextField.stringValue, forKey: "outputDirectory")
-        UserDefaults.standard.synchronize()
         
-        self.game = GameConnection(gameIdOrURL: self.gameURLTextField.stringValue, heroName: self.heroNameTextField.stringValue, npt: self.nptCookieTextField.stringValue, dpt: self.dptCookieTextField.stringValue, handHistoryDirectory: self.handsOutputDirTextField.stringValue)
+        if self.running {
+            self.game = nil
+            self.grabHandsButton.title = "Start grabbing hands"
+            self.running = false
+        } else {
+            UserDefaults.standard.set(self.gameURLTextField.stringValue, forKey: "gameURL")
+            UserDefaults.standard.set(self.heroNameTextField.stringValue, forKey: "heroName")
+            UserDefaults.standard.set(self.dptCookieTextField.stringValue, forKey: "dpt")
+            UserDefaults.standard.set(self.nptCookieTextField.stringValue, forKey: "npt")
+            UserDefaults.standard.set(self.handsOutputDirTextField.stringValue, forKey: "outputDirectory")
+            UserDefaults.standard.synchronize()
+            
+            self.game = GameConnection(gameIdOrURL: self.gameURLTextField.stringValue, heroName: self.heroNameTextField.stringValue, npt: self.nptCookieTextField.stringValue, dpt: self.dptCookieTextField.stringValue, handHistoryDirectory: self.handsOutputDirTextField.stringValue)
 
-        if let info = CGWindowListCopyWindowInfo(.optionAll, kCGNullWindowID) as? [[ String : Any]] {
-            for dict in info {
-                if let ownerName = dict["kCGWindowOwnerName"] as? String, ownerName.contains("Chrome"), let rect = dict["kCGWindowBounds"] as? [String:Any], let height = rect["Height"] as? Int, let width = rect["Width"] as? Int, let x = rect["X"] as? Int, let y = rect["Y"] as? Int, height > 100 {
-                    DispatchQueue.main.async {
-                        let newFrame = CGRect(x: x, y: y, width: width, height: height)
+            if let info = CGWindowListCopyWindowInfo(.optionAll, kCGNullWindowID) as? [[ String : Any]] {
+                for dict in info {
+                    if let ownerName = dict["kCGWindowOwnerName"] as? String, ownerName.contains("Chrome"), let rect = dict["kCGWindowBounds"] as? [String:Any], let height = rect["Height"] as? Int, let width = rect["Width"] as? Int, let x = rect["X"] as? Int, let y = rect["Y"] as? Int, height > 100 {
+                        DispatchQueue.main.async {
+                            let newFrame = CGRect(x: x, y: y, width: width, height: height)
 
-                        let window = CustomWindow(contentRect: newFrame, styleMask: [.borderless], backing: .buffered, defer: false)
-                        window.title = "PokerNowGrabber - Table: PokerNowGrabber"
-                        self.controller = NSWindowController(window: window)
-                        self.controller?.showWindow(self)
+                            let window = CustomWindow(contentRect: newFrame, styleMask: [.borderless], backing: .buffered, defer: false)
+                            window.title = "PokerNowGrabber - Table: PokerNowGrabber"
+                            self.controller = NSWindowController(window: window)
+                            self.controller?.showWindow(self)
 
+                        }
                     }
                 }
             }
+            
+            self.grabHandsButton.title = "Stop grabbing hands"
+            self.running = true
         }
     }
     
