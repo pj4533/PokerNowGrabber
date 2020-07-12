@@ -50,7 +50,7 @@ class ViewController: NSViewController {
                 for dict in info {
                     if let ownerName = dict["kCGWindowOwnerName"] as? String, ownerName.contains("Chrome"), let rect = dict["kCGWindowBounds"] as? [String:Any], let height = rect["Height"] as? Int, let width = rect["Width"] as? Int, let x = rect["X"] as? Int, let y = rect["Y"] as? Int, height > 100 {
                         DispatchQueue.main.async {
-                            let newFrame = CGRect(x: x, y: y, width: width, height: height)
+                            let newFrame = CGRect(x: x - 300, y: y, width: width + 600, height: height)
 
                             let window = CustomWindow(contentRect: newFrame, styleMask: [.borderless], backing: .buffered, defer: false)
                             window.title = "PokerNowGrabber - Table: PokerNowGrabber"

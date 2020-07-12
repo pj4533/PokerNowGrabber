@@ -89,61 +89,66 @@ class GameConnection: NSObject {
             }
 
             socket?.on("rup", callback: { (json, ack) in
-                do {
-                    let data = try JSONSerialization.data(withJSONObject: json, options: [])
-                    let decoder = JSONDecoder()
-                    let state = try decoder.decode([GameState].self, from: data)
-
-                    self.players = state.first?.players?.map({$0.value}) ?? []
-                    
-                    print("In Game Players (FROM RUP): ")
-                    print("----------------------------")
-                    let players = state.first?.players?.values.filter({$0.name != nil}).map({ $0 })
-                    for player in players ?? [] {
-                        print("\t\(player.name ?? "") @ \(player.id ?? "")")
-                    }
-                    print("----------------------------")
-                } catch let error {
-                    if self.debug {
-                        print(error)
-                    }
-                }
+//                do {
+//                    let data = try JSONSerialization.data(withJSONObject: json, options: [])
+//                    let decoder = JSONDecoder()
+//                    let state = try decoder.decode([GameState].self, from: data)
+//
+//                    self.players = state.first?.players?.map({$0.value}) ?? []
+//
+//                    print("In Game Players (FROM RUP): ")
+//                    print("----------------------------")
+//                    let players = state.first?.players?.values.filter({$0.name != nil}).map({ $0 })
+//                    for player in players ?? [] {
+//                        print("\t\(player.name ?? "") @ \(player.id ?? "")")
+//                    }
+//                    print("----------------------------")
+//                } catch let error {
+//                    if self.debug {
+//                        print(error)
+//                    }
+//                }
 
                 
                 self.loadedRUP = true
+                
+                print("**** Connected - Loaded RUP")
             })
 
             socket?.on("gC", callback: { (newStateArray, ack) in
                 if self.loadedRUP {
                     
-                    if let json = newStateArray.first as? [String:Any] {
-                        do {
-                            let data = try JSONSerialization.data(withJSONObject: json, options: [])
-                            let decoder = JSONDecoder()
-                            let state = try decoder.decode(GameState.self, from: data)
-                            
-                            if state.players != nil {
-                                for playerId in state.players?.map({$0.key}) ?? [] {
-                                    if let player = state.players?[playerId] {
-                                        if player.status == .requestedGameIngress {
-                                            print("NEW PLAYER:  \(player.name ?? "") @ \(player.id ?? "")")
-                                        }
-                                    }
-                                }
-                            }
-                        } catch let error {
-                            if self.debug {
-                                print(error)
-                            }
-                        }
-                    }
+//                    if let json = newStateArray.first as? [String:Any] {
+//                        do {
+//                            let data = try JSONSerialization.data(withJSONObject: json, options: [])
+//                            let decoder = JSONDecoder()
+//                            let state = try decoder.decode(GameState.self, from: data)
+//
+//                            if state.players != nil {
+//                                for playerId in state.players?.map({$0.key}) ?? [] {
+//                                    if let player = state.players?[playerId] {
+//                                        if player.status == .requestedGameIngress {
+//                                            // figure out how to get ID here -- not showing up -- look in pnhud
+//                                            print("NEW PLAYER:  \(player.name ?? "") @ \(player.id ?? "")")
+//                                        }
+//                                    }
+//                                }
+//                            }
+//                        } catch let error {
+//                            if self.debug {
+//                                print(error)
+//                            }
+//                        }
+//                    }
                         
                         
                     if let json = newStateArray.first as? [String:Any] {
                         if (json["gT"] as? String) == "gameResult" {
+                            print("**** Detected End of Hand")
                             if let now = json["now"] as? Int {
                                 let nowTime = now * 100
                                 if let startTime = self.startTime {
+                                    print("**** Writing raw hand history log: \(nowTime)")
                                     self.writeHandLog(gameId: gameId, startTime: startTime, endTime: nowTime)
                                 }
                                 self.startTime = nowTime
