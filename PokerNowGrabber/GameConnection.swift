@@ -8,6 +8,7 @@
 
 import Foundation
 import SocketIO
+import PokerNowKit
 
 class GameConnection: NSObject {
 
@@ -89,27 +90,6 @@ class GameConnection: NSObject {
             }
 
             socket?.on("rup", callback: { (json, ack) in
-//                do {
-//                    let data = try JSONSerialization.data(withJSONObject: json, options: [])
-//                    let decoder = JSONDecoder()
-//                    let state = try decoder.decode([GameState].self, from: data)
-//
-//                    self.players = state.first?.players?.map({$0.value}) ?? []
-//
-//                    print("In Game Players (FROM RUP): ")
-//                    print("----------------------------")
-//                    let players = state.first?.players?.values.filter({$0.name != nil}).map({ $0 })
-//                    for player in players ?? [] {
-//                        print("\t\(player.name ?? "") @ \(player.id ?? "")")
-//                    }
-//                    print("----------------------------")
-//                } catch let error {
-//                    if self.debug {
-//                        print(error)
-//                    }
-//                }
-
-                
                 self.loadedRUP = true
                 
                 print("**** Connected - Loaded RUP")
@@ -117,31 +97,6 @@ class GameConnection: NSObject {
 
             socket?.on("gC", callback: { (newStateArray, ack) in
                 if self.loadedRUP {
-                    
-//                    if let json = newStateArray.first as? [String:Any] {
-//                        do {
-//                            let data = try JSONSerialization.data(withJSONObject: json, options: [])
-//                            let decoder = JSONDecoder()
-//                            let state = try decoder.decode(GameState.self, from: data)
-//
-//                            if state.players != nil {
-//                                for playerId in state.players?.map({$0.key}) ?? [] {
-//                                    if let player = state.players?[playerId] {
-//                                        if player.status == .requestedGameIngress {
-//                                            // figure out how to get ID here -- not showing up -- look in pnhud
-//                                            print("NEW PLAYER:  \(player.name ?? "") @ \(player.id ?? "")")
-//                                        }
-//                                    }
-//                                }
-//                            }
-//                        } catch let error {
-//                            if self.debug {
-//                                print(error)
-//                            }
-//                        }
-//                    }
-                        
-                        
                     if let json = newStateArray.first as? [String:Any] {
                         if (json["gT"] as? String) == "gameResult" {
                             print("**** Detected End of Hand")
@@ -195,7 +150,7 @@ class GameConnection: NSObject {
                     
                     var foundEnding = false
                     var foundStarting = false
-                    var lines: [String] = ["entry,at,order"]
+                    var rows: [[String:String]] = []
                     
                     //let _ = logResponse.logs?.map({ print($0.msg ?? "") })
                     
@@ -205,33 +160,26 @@ class GameConnection: NSObject {
                                 foundEnding = true
                             }
                             if foundEnding && !foundStarting {
-                                lines.append("\"\(msg.replacingOccurrences(of: "\"", with: "\"\""))\",\(at),\(order)")
+                                rows.append([
+                                    "entry":msg,
+                                    "at":"\(at)",
+                                    "order":"\(order)"
+                                ])
                             }
+                            
                             if msg.contains("-- starting hand") {
                                 foundStarting = true
                             }
                         }
                     }
                     
-                    let linesText = lines.joined(separator: "\n")
-                    let fileURL = URL(fileURLWithPath: "./hand_\(endTime).txt")
-                    try linesText.write(to: fileURL, atomically: false, encoding: .utf8)
-
-
-                    // if this fails with an error i think it cause it to stop
                     if let heroName = self.heroName, let handHistoryDirectory = self.handHistoryDirectory {
-                        let pipe = Pipe()
-                        let task = Process()
-                        task.standardOutput = pipe
-                        task.arguments = ["/usr/local/bin/pn2ps", "./hand_\(endTime).txt", heroName, "-m", "0.01", "-t", "PokerNowGrabber"]
-                        task.launchPath = "/usr/bin/env"
-                        task.launch()
-                        let data = pipe.fileHandleForReading.readDataToEndOfFile()
-                        let output = String(data: data, encoding: .utf8)!
+                        let game = Game(rows: rows)
+                        let pokerStarsLines = game.hands.first?.getPokerStarsDescription(heroName: heroName, multiplier: 0.01, tableName: "PokerNowGrabber")
+                        let output = pokerStarsLines?.joined(separator: "\n") ?? ""
                         let outputURL = URL(fileURLWithPath: "\(handHistoryDirectory)/pnhud_hand_\(endTime).txt")
                         try output.write(to: outputURL, atomically: false, encoding: .utf8)
                     }
-                                        
                 } catch let error {
                     print(error)
                 }

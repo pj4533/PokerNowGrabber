@@ -1,0 +1,3 @@
+[submodule "Submodules/PokerNowKit"]
+	path = Submodules/PokerNowKit
+	url = git@github.com:pj4533/PokerNowKit.git

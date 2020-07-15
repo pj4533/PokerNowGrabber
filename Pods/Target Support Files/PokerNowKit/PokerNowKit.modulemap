@@ -1,0 +1,6 @@
+framework module PokerNowKit {
+  umbrella header "PokerNowKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

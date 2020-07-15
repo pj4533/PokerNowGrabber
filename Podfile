@@ -6,4 +6,5 @@ target 'PokerNowGrabber' do
 	workspace 'PokerNowGrabber.xcworkspace'
 
 	pod 'Socket.IO-Client-Swift'
+	pod 'PokerNowKit', :path => 'Submodules/PokerNowKit'
 end

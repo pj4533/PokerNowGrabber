@@ -1,9 +1,11 @@
 PODS:
+  - PokerNowKit (0.0.4)
   - Socket.IO-Client-Swift (15.2.0):
     - Starscream (~> 3.1)
   - Starscream (3.1.1)
 
 DEPENDENCIES:
+  - PokerNowKit (from `Submodules/PokerNowKit`)
   - Socket.IO-Client-Swift
 
 SPEC REPOS:
@@ -11,10 +13,15 @@ SPEC REPOS:
     - Socket.IO-Client-Swift
     - Starscream
 
+EXTERNAL SOURCES:
+  PokerNowKit:
+    :path: Submodules/PokerNowKit
+
 SPEC CHECKSUMS:
+  PokerNowKit: f14f7e00dfacb69ad225e091c0b9e26132fecf87
   Socket.IO-Client-Swift: 1e3e3a1f09f3312a167f0d781eb2f383d477357c
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
 
-PODFILE CHECKSUM: 34e17dd49f3b478323bdf7ff71f1d9c05da90e59
+PODFILE CHECKSUM: 7d0e8bf52e3f5793deb0d9caf418fa4607788d1b
 
 COCOAPODS: 1.6.1
