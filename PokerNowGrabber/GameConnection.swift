@@ -197,6 +197,8 @@ class GameConnection: NSObject {
                     var foundStarting = false
                     var lines: [String] = ["entry,at,order"]
                     
+                    //let _ = logResponse.logs?.map({ print($0.msg ?? "") })
+                    
                     for log in logResponse.logs ?? [] {
                         if let msg = log.msg, let at = log.at, let order = log.createdAt {
                             if msg.contains("-- ending hand") {
@@ -216,6 +218,7 @@ class GameConnection: NSObject {
                     try linesText.write(to: fileURL, atomically: false, encoding: .utf8)
 
 
+                    // if this fails with an error i think it cause it to stop
                     if let heroName = self.heroName, let handHistoryDirectory = self.handHistoryDirectory {
                         let pipe = Pipe()
                         let task = Process()
