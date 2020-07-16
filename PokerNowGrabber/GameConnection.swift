@@ -175,7 +175,7 @@ class GameConnection: NSObject {
                     
                     if let heroName = self.heroName, let handHistoryDirectory = self.handHistoryDirectory {
                         let game = Game(rows: rows)
-                        let pokerStarsLines = game.hands.first?.getPokerStarsDescription(heroName: heroName, multiplier: 0.01, tableName: "\(gameId)")
+                        let pokerStarsLines = game.hands.first?.getPokerStarsDescription(heroName: heroName, multiplier: 0.01, tableName: "PokerNowGrabber")
                         let output = pokerStarsLines?.joined(separator: "\n") ?? ""
                         let outputURL = URL(fileURLWithPath: "\(handHistoryDirectory)/pnhud_hand_\(endTime).txt")
                         try output.write(to: outputURL, atomically: false, encoding: .utf8)
