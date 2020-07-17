@@ -12,7 +12,7 @@ Also, PokerNowGrabber looks for your browser window (Chrome only for now), and o
 
 ### How To Run
 
-1. Download the latest release
+1. Download the [latest release](https://github.com/pj4533/PokerNowGrabber/releases).
 2. Run (might need to give permission)
 3. Enter your name used
 4. Enter the URL of the game
