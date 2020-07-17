@@ -18,6 +18,11 @@
   "platforms": {
     "osx": "10.10"
   },
+  "dependencies": {
+    "CryptoSwift": [
+
+    ]
+  },
   "source_files": "PokerNowKit/**/*.{h,swift}",
   "requires_arc": true
 }
