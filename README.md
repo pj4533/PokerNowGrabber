@@ -2,6 +2,8 @@
 
 Save hand histories while you play PokerNow.club
 
+![Screenshot](pokernowgrabber.png)
+
 ### What
 
 PokerNowGrabber will connect to a PokerNow.club table and watch the action via the websocket.  When a hand is over, it downloads the log, converts it to PokerStars format and saves it to a directory.  
