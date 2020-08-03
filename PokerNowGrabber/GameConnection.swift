@@ -28,8 +28,9 @@ class GameConnection: NSObject {
     var npt: String?
     var dpt: String?
     var handHistoryDirectory: String?
+    var multiplier: Double?
     
-    init(gameIdOrURL: String, heroName: String?, npt: String?, dpt: String?, handHistoryDirectory: String?) {
+    init(gameIdOrURL: String, heroName: String?, npt: String?, dpt: String?, handHistoryDirectory: String?, multiplier: Double?) {
         super.init()
 
         struct GameState : Codable {
@@ -37,6 +38,7 @@ class GameConnection: NSObject {
         }
 
         self.heroName = heroName
+        self.multiplier = multiplier
         self.npt = npt
         self.dpt = dpt
         self.handHistoryDirectory = handHistoryDirectory
@@ -175,7 +177,7 @@ class GameConnection: NSObject {
                     
                     if let heroName = self.heroName, let handHistoryDirectory = self.handHistoryDirectory {
                         let game = Game(rows: rows)
-                        let pokerStarsLines = game.hands.first?.getPokerStarsDescription(heroName: heroName, multiplier: 0.01, tableName: "PokerNowGrabber")
+                        let pokerStarsLines = game.hands.first?.getPokerStarsDescription(heroName: heroName, multiplier: self.multiplier ?? 0.01, tableName: "\(gameId)")
                         let output = pokerStarsLines?.joined(separator: "\n") ?? ""
                         let outputURL = URL(fileURLWithPath: "\(handHistoryDirectory)/pokernowgrabber_hand_\(endTime).txt")
                         try output.write(to: outputURL, atomically: false, encoding: .utf8)

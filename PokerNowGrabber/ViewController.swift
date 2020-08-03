@@ -20,6 +20,7 @@ class ViewController: NSViewController {
     @IBOutlet weak var nptCookieTextField: NSTextField!
     @IBOutlet weak var handsOutputDirTextField: NSTextField!
     @IBOutlet weak var gameURLTextField: NSTextField!
+    @IBOutlet weak var multiplierTextField: NSTextField!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,6 +29,9 @@ class ViewController: NSViewController {
         self.nptCookieTextField.stringValue = UserDefaults.standard.string(forKey: "npt") ?? ""
         self.handsOutputDirTextField.stringValue = UserDefaults.standard.string(forKey: "outputDirectory") ?? ""
         self.gameURLTextField.stringValue = UserDefaults.standard.string(forKey: "gameURL") ?? ""
+        
+        let multiplier = UserDefaults.standard.double(forKey: "multiplier")
+        self.multiplierTextField.doubleValue = multiplier != 0.0 ? multiplier : 0.01
     }
 
     @IBAction func startGrabbingClicked(_ sender: Any) {
@@ -42,9 +46,11 @@ class ViewController: NSViewController {
             UserDefaults.standard.set(self.dptCookieTextField.stringValue, forKey: "dpt")
             UserDefaults.standard.set(self.nptCookieTextField.stringValue, forKey: "npt")
             UserDefaults.standard.set(self.handsOutputDirTextField.stringValue, forKey: "outputDirectory")
+            UserDefaults.standard.set(self.multiplierTextField.doubleValue, forKey: "multiplier")
+
             UserDefaults.standard.synchronize()
             
-            self.game = GameConnection(gameIdOrURL: self.gameURLTextField.stringValue, heroName: self.heroNameTextField.stringValue, npt: self.nptCookieTextField.stringValue, dpt: self.dptCookieTextField.stringValue, handHistoryDirectory: self.handsOutputDirTextField.stringValue)
+            self.game = GameConnection(gameIdOrURL: self.gameURLTextField.stringValue, heroName: self.heroNameTextField.stringValue, npt: self.nptCookieTextField.stringValue, dpt: self.dptCookieTextField.stringValue, handHistoryDirectory: self.handsOutputDirTextField.stringValue, multiplier: self.multiplierTextField.doubleValue)
 
             if let info = CGWindowListCopyWindowInfo(.optionAll, kCGNullWindowID) as? [[ String : Any]] {
                 for dict in info {
@@ -53,7 +59,8 @@ class ViewController: NSViewController {
                             let newFrame = CGRect(x: x - 300, y: y, width: width + 600, height: height)
 
                             let window = CustomWindow(contentRect: newFrame, styleMask: [.borderless], backing: .buffered, defer: false)
-                            window.title = "PokerNowGrabber - Table: PokerNowGrabber"
+                            let gameId = self.gameURLTextField.stringValue.replacingOccurrences(of: "https://www.pokernow.club/games/", with: "")
+                            window.title = "PokerNowGrabber - Table: \(gameId)"
                             self.controller = NSWindowController(window: window)
                             self.controller?.showWindow(self)
 
