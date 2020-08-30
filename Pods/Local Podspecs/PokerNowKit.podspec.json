@@ -1,6 +1,6 @@
 {
   "name": "PokerNowKit",
-  "version": "0.0.4",
+  "version": "0.0.9",
   "summary": "Shared framework of PokerNow.club log parsing code",
   "homepage": "https://github.com/pj4533/PokerNowKit",
   "license": {
@@ -12,7 +12,7 @@
   },
   "source": {
     "git": "git@github.com:pj4533/PokerNowKit.git",
-    "tag": "0.0.4"
+    "tag": "0.0.9"
   },
   "swift_version": "5.0",
   "platforms": {
