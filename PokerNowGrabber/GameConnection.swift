@@ -155,7 +155,7 @@ class GameConnection: NSObject {
                     var rows: [[String:String]] = []
                     
                     //let _ = logResponse.logs?.map({ print($0.msg ?? "") })
-                    
+                    var tableHandId : String = "???"
                     for log in logResponse.logs ?? [] {
                         if let msg = log.msg, let at = log.at, let order = log.createdAt {
                             if msg.contains("-- ending hand") {
@@ -170,6 +170,7 @@ class GameConnection: NSObject {
                             }
                             
                             if msg.contains("-- starting hand") {
+                                tableHandId = msg.components(separatedBy: "  ").first?.replacingOccurrences(of: "-- starting hand ", with: "") ?? "?"
                                 foundStarting = true
                             }
                         }
@@ -177,7 +178,8 @@ class GameConnection: NSObject {
                     
                     if let heroName = self.heroName, let handHistoryDirectory = self.handHistoryDirectory {
                         let game = Game(rows: rows)
-                        let pokerStarsLines = game.hands.first?.getPokerStarsDescription(heroName: heroName, multiplier: self.multiplier ?? 0.01, tableName: "\(gameId)")
+                        print("Writing \(tableHandId): \(game.hands.first?.id ?? 000)")
+                        let pokerStarsLines = game.hands.first?.getPokerStarsDescription(heroName: heroName, multiplier: self.multiplier ?? 1.0, tableName: "\(gameId)")
                         let output = pokerStarsLines?.joined(separator: "\n") ?? ""
                         let outputURL = URL(fileURLWithPath: "\(handHistoryDirectory)/pokernowgrabber_hand_\(endTime).txt")
                         try output.write(to: outputURL, atomically: false, encoding: .utf8)

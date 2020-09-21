@@ -31,7 +31,7 @@ class ViewController: NSViewController {
         self.gameURLTextField.stringValue = UserDefaults.standard.string(forKey: "gameURL") ?? ""
         
         let multiplier = UserDefaults.standard.double(forKey: "multiplier")
-        self.multiplierTextField.doubleValue = multiplier != 0.0 ? multiplier : 0.01
+        self.multiplierTextField.doubleValue = multiplier != 0.0 ? multiplier : 1.0
     }
 
     @IBAction func startGrabbingClicked(_ sender: Any) {
