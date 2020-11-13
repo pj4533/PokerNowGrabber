@@ -26,11 +26,11 @@ class GameConnection: NSObject {
     
     var heroName: String?
     var npt: String?
-    var dpt: String?
+    var apt: String?
     var handHistoryDirectory: String?
     var multiplier: Double?
     
-    init(gameIdOrURL: String, heroName: String?, npt: String?, dpt: String?, handHistoryDirectory: String?, multiplier: Double?) {
+    init(gameIdOrURL: String, heroName: String?, npt: String?, apt: String?, handHistoryDirectory: String?, multiplier: Double?) {
         super.init()
 
         struct GameState : Codable {
@@ -40,7 +40,7 @@ class GameConnection: NSObject {
         self.heroName = heroName
         self.multiplier = multiplier
         self.npt = npt
-        self.dpt = dpt
+        self.apt = apt
         self.handHistoryDirectory = handHistoryDirectory
         let gameIdOrURL = gameIdOrURL
 
@@ -137,8 +137,8 @@ class GameConnection: NSObject {
 
         if let npt = self.npt {
             var cookieString = "npt=\(npt)"
-            if let dpt = self.dpt {
-                cookieString = "\(cookieString);dpt=\(dpt)"
+            if let apt = self.apt {
+                cookieString = "\(cookieString);apt=\(apt)"
             }
             request.allHTTPHeaderFields = ["Cookie":cookieString]
         }

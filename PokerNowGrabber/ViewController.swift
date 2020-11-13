@@ -16,7 +16,7 @@ class ViewController: NSViewController {
     
     @IBOutlet weak var heroNameTextField: NSTextField!
     @IBOutlet weak var grabHandsButton: NSButton!
-    @IBOutlet weak var dptCookieTextField: NSTextField!
+    @IBOutlet weak var aptCookieTextField: NSTextField!
     @IBOutlet weak var nptCookieTextField: NSTextField!
     @IBOutlet weak var handsOutputDirTextField: NSTextField!
     @IBOutlet weak var gameURLTextField: NSTextField!
@@ -25,7 +25,7 @@ class ViewController: NSViewController {
         super.viewDidLoad()
         
         self.heroNameTextField.stringValue = UserDefaults.standard.string(forKey: "heroName") ?? ""
-        self.dptCookieTextField.stringValue = UserDefaults.standard.string(forKey: "dpt") ?? ""
+        self.aptCookieTextField.stringValue = UserDefaults.standard.string(forKey: "apt") ?? ""
         self.nptCookieTextField.stringValue = UserDefaults.standard.string(forKey: "npt") ?? ""
         self.handsOutputDirTextField.stringValue = UserDefaults.standard.string(forKey: "outputDirectory") ?? ""
         self.gameURLTextField.stringValue = UserDefaults.standard.string(forKey: "gameURL") ?? ""
@@ -43,14 +43,14 @@ class ViewController: NSViewController {
         } else {
             UserDefaults.standard.set(self.gameURLTextField.stringValue, forKey: "gameURL")
             UserDefaults.standard.set(self.heroNameTextField.stringValue, forKey: "heroName")
-            UserDefaults.standard.set(self.dptCookieTextField.stringValue, forKey: "dpt")
+            UserDefaults.standard.set(self.aptCookieTextField.stringValue, forKey: "apt")
             UserDefaults.standard.set(self.nptCookieTextField.stringValue, forKey: "npt")
             UserDefaults.standard.set(self.handsOutputDirTextField.stringValue, forKey: "outputDirectory")
             UserDefaults.standard.set(self.multiplierTextField.doubleValue, forKey: "multiplier")
 
             UserDefaults.standard.synchronize()
             
-            self.game = GameConnection(gameIdOrURL: self.gameURLTextField.stringValue, heroName: self.heroNameTextField.stringValue, npt: self.nptCookieTextField.stringValue, dpt: self.dptCookieTextField.stringValue, handHistoryDirectory: self.handsOutputDirTextField.stringValue, multiplier: self.multiplierTextField.doubleValue)
+            self.game = GameConnection(gameIdOrURL: self.gameURLTextField.stringValue, heroName: self.heroNameTextField.stringValue, npt: self.nptCookieTextField.stringValue, apt: self.aptCookieTextField.stringValue, handHistoryDirectory: self.handsOutputDirTextField.stringValue, multiplier: self.multiplierTextField.doubleValue)
 
             if let info = CGWindowListCopyWindowInfo(.optionAll, kCGNullWindowID) as? [[ String : Any]] {
                 for dict in info {

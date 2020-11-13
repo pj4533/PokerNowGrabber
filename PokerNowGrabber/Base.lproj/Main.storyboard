@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097.2"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17156"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -827,7 +828,7 @@
                                     <constraint firstAttribute="height" constant="16" id="V8W-Ra-fJn"/>
                                     <constraint firstAttribute="width" constant="145" id="g1M-St-Xq5"/>
                                 </constraints>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="DPT Cookie" id="k35-ve-wvC">
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="APT Cookie" id="k35-ve-wvC">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -913,7 +914,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="dptCookieTextField" destination="TLm-9H-flS" id="JNF-zY-I6y"/>
+                        <outlet property="aptCookieTextField" destination="TLm-9H-flS" id="eTI-eX-3A2"/>
                         <outlet property="gameURLTextField" destination="Txd-Io-fA5" id="yW8-L3-vhm"/>
                         <outlet property="grabHandsButton" destination="vKY-QJ-HVr" id="eF3-rs-JOS"/>
                         <outlet property="handsOutputDirTextField" destination="IBv-ZT-jxB" id="TKe-Rc-EtL"/>
